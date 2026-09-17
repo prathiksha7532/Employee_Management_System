@@ -3,470 +3,516 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Employee Management System</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #f4f6f8;
-            color: #222;
-        }
-
-        header {
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
-
-        header h1 {
-            font-size: 30px;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 30px auto;
-        }
-
-        .home-page {
-            text-align: center;
-        }
-
-        .home-page h2 {
-            margin-bottom: 30px;
-            font-size: 26px;
-        }
-
-        .menu {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-
-        .menu button {
-            width: 180px;
-            padding: 20px;
-            border: none;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .menu button:hover {
-            background: #1d4ed8;
-        }
-
-        .page {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .page h2 {
-            margin-bottom: 25px;
-            color: #1f2937;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            font-size: 15px;
-        }
-
-        .btn {
-            padding: 11px 20px;
-            border: none;
-            border-radius: 7px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #6b7280;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #dc2626;
-            color: white;
-        }
-
-        .btn-edit {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background: #1f2937;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background: #f9fafb;
-        }
-
-        .count-box {
-            margin-bottom: 15px;
-            padding: 12px;
-            background: #e5e7eb;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        .back-btn {
-            margin-bottom: 20px;
-        }
-
-        .message {
-            margin: 15px 0;
-            padding: 12px;
-            border-radius: 7px;
-            display: none;
-        }
-
-        .success {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        @media (max-width: 700px) {
-            .menu {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .menu button {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .page {
-                padding: 20px;
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
     <h1>Employee Management System</h1>
+    <span>Employee Dashboard</span>
 </header>
+
 
 <div class="container">
 
-    <!-- HOME PAGE -->
-    <div id="homePage" class="home-page page active">
-        <h2>Welcome to Employee Management System</h2>
+    <!-- HOME / DASHBOARD -->
+
+    <div id="homePage" class="page active home-page">
+
+        <h2>Dashboard</h2>
+
+        <p>Manage your employee information easily</p>
+
+
+        <div class="dashboard">
+
+            <div class="dashboard-card">
+                <div class="icon">👥</div>
+                <h3>Total Employees</h3>
+                <p id="dashboardCount">0 Employees</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="icon">➕</div>
+                <h3>Create Employee</h3>
+                <p>Add a new employee record</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="icon">🔍</div>
+                <h3>Search Employee</h3>
+                <p>Find employee information</p>
+            </div>
+
+        </div>
+
 
         <div class="menu">
-            <button onclick="showPage('createPage')">CREATE</button>
-            <button onclick="showPage('searchPage')">SEARCH</button>
-            <button onclick="showPage('showPage')">SHOW</button>
+
+            <button onclick="showPage('createPage')">
+                ➕ CREATE
+            </button>
+
+            <button onclick="showPage('searchPage')">
+                🔍 SEARCH
+            </button>
+
+            <button onclick="showPage('showPage')">
+                📋 SHOW
+            </button>
+
         </div>
+
     </div>
 
 
     <!-- CREATE PAGE -->
+
     <div id="createPage" class="page">
 
-        <button class="btn btn-secondary back-btn"
+        <div class="content-card">
+
+            <button
+                class="btn btn-secondary back-btn"
                 onclick="showPage('homePage')">
-            ← Back
-        </button>
-
-        <h2 id="formTitle">Create Employee</h2>
-
-        <div id="message" class="message"></div>
-
-        <form id="employeeForm">
-
-            <div class="form-group">
-                <label>Employee ID</label>
-                <input type="text" id="employeeId" required>
-            </div>
-
-            <div class="form-group">
-                <label>Employee Name</label>
-                <input type="text" id="employeeName" required>
-            </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="employeeEmail" required>
-            </div>
-
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" id="employeePhone" required>
-            </div>
-
-            <div class="form-group">
-                <label>Department</label>
-                <select id="employeeDepartment" required>
-                    <option value="">Select Department</option>
-                    <option value="HR">HR</option>
-                    <option value="IT">IT</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Sales">Sales</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Designation</label>
-                <input type="text" id="employeeDesignation" required>
-            </div>
-
-            <div class="form-group">
-                <label>Salary</label>
-                <input type="number" id="employeeSalary" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">
-                Save Employee
+                ← Back to Dashboard
             </button>
 
-            <button type="button"
+
+            <h2 id="formTitle">Create Employee</h2>
+
+            <div id="message" class="message"></div>
+
+
+            <form id="employeeForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Employee ID</label>
+
+                        <input
+                            type="text"
+                            id="employeeId"
+                            placeholder="Enter employee ID"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Employee Name</label>
+
+                        <input
+                            type="text"
+                            id="employeeName"
+                            placeholder="Enter employee name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="employeeEmail"
+                            placeholder="Enter email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input
+                            type="tel"
+                            id="employeePhone"
+                            placeholder="Enter phone number"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Department</label>
+
+                        <select id="employeeDepartment" required>
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <option value="HR">
+                                HR
+                            </option>
+
+                            <option value="IT">
+                                IT
+                            </option>
+
+                            <option value="Finance">
+                                Finance
+                            </option>
+
+                            <option value="Marketing">
+                                Marketing
+                            </option>
+
+                            <option value="Sales">
+                                Sales
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Designation</label>
+
+                        <input
+                            type="text"
+                            id="employeeDesignation"
+                            placeholder="Enter designation"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Salary</label>
+
+                        <input
+                            type="number"
+                            id="employeeSalary"
+                            placeholder="Enter salary"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    💾 Save Employee
+                </button>
+
+
+                <button
+                    type="button"
                     class="btn btn-secondary"
                     onclick="resetForm()">
-                Clear
-            </button>
+                    Clear
+                </button>
 
-        </form>
+            </form>
+
+        </div>
+
     </div>
 
 
     <!-- SEARCH PAGE -->
+
     <div id="searchPage" class="page">
 
-        <button class="btn btn-secondary back-btn"
+        <div class="content-card">
+
+            <button
+                class="btn btn-secondary back-btn"
                 onclick="showPage('homePage')">
-            ← Back
-        </button>
-
-        <h2>Search Employee</h2>
-
-        <div class="search-box">
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search by ID, name, email, department or designation"
-                onkeyup="searchEmployees()"
-            >
-            <button class="btn btn-primary"
-                    onclick="searchEmployees()">
-                Search
+                ← Back to Dashboard
             </button>
+
+
+            <h2>🔍 Search Employee</h2>
+
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by ID, name, email, department or designation"
+                    onkeyup="searchEmployees()">
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="searchEmployees()">
+                    Search
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Designation</th>
+                            <th>Salary</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="searchResults"></tbody>
+
+                </table>
+
+            </div>
+
         </div>
 
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Department</th>
-                        <th>Designation</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-
-                <tbody id="searchResults"></tbody>
-            </table>
-        </div>
     </div>
 
 
     <!-- SHOW PAGE -->
+
     <div id="showPage" class="page">
 
-        <button class="btn btn-secondary back-btn"
+        <div class="content-card">
+
+            <button
+                class="btn btn-secondary back-btn"
                 onclick="showPage('homePage')">
-            ← Back
-        </button>
+                ← Back to Dashboard
+            </button>
 
-        <h2>All Employees</h2>
 
-        <div class="count-box">
-            Total Employees:
-            <span id="employeeCount">0</span>
+            <h2>📋 All Employees</h2>
+
+
+            <div class="count-box">
+
+                👥 Total Employees:
+                <span id="employeeCount">0</span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Designation</th>
+                            <th>Salary</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="employeeTable"></tbody>
+
+                </table>
+
+            </div>
+
         </div>
 
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Department</th>
-                        <th>Designation</th>
-                        <th>Salary</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody id="employeeTable"></tbody>
-            </table>
-        </div>
     </div>
 
 </div>
 
 
+<footer>
+
+    Employee Management System © 2026
+
+</footer>
+
+
 <script>
 
-    let employees = JSON.parse(
-        localStorage.getItem("employees")
-    ) || [];
+let employees =
+    JSON.parse(localStorage.getItem("employees")) || [];
 
-    let editIndex = -1;
+let editIndex = -1;
 
 
-    // SHOW PAGE
-    function showPage(pageId) {
+// SHOW PAGE
 
-        document.querySelectorAll(".page").forEach(function(page) {
+function showPage(pageId) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page) {
+
             page.classList.remove("active");
+
         });
 
-        document.getElementById(pageId).classList.add("active");
 
-        if (pageId === "showPage") {
-            displayEmployees();
-        }
+    document
+        .getElementById(pageId)
+        .classList.add("active");
 
-        if (pageId === "searchPage") {
-            searchEmployees();
-        }
+
+    if (pageId === "showPage") {
+
+        displayEmployees();
+
     }
 
 
-    // CREATE / UPDATE EMPLOYEE
-    document.getElementById("employeeForm")
-        .addEventListener("submit", function(event) {
+    if (pageId === "searchPage") {
+
+        searchEmployees();
+
+    }
+
+
+    updateDashboard();
+
+}
+
+
+// CREATE / UPDATE
+
+document
+    .getElementById("employeeForm")
+    .addEventListener("submit", function(event) {
 
         event.preventDefault();
 
+
         const employee = {
-            id: document.getElementById("employeeId").value.trim(),
-            name: document.getElementById("employeeName").value.trim(),
-            email: document.getElementById("employeeEmail").value.trim(),
-            phone: document.getElementById("employeePhone").value.trim(),
-            department: document.getElementById("employeeDepartment").value,
-            designation: document.getElementById("employeeDesignation").value.trim(),
-            salary: document.getElementById("employeeSalary").value
+
+            id:
+                document
+                .getElementById("employeeId")
+                .value
+                .trim(),
+
+            name:
+                document
+                .getElementById("employeeName")
+                .value
+                .trim(),
+
+            email:
+                document
+                .getElementById("employeeEmail")
+                .value
+                .trim(),
+
+            phone:
+                document
+                .getElementById("employeePhone")
+                .value
+                .trim(),
+
+            department:
+                document
+                .getElementById("employeeDepartment")
+                .value,
+
+            designation:
+                document
+                .getElementById("employeeDesignation")
+                .value
+                .trim(),
+
+            salary:
+                document
+                .getElementById("employeeSalary")
+                .value
+
         };
 
 
+        // CREATE
+
         if (editIndex === -1) {
 
-            const exists = employees.some(function(emp) {
-                return emp.id === employee.id;
-            });
+            const exists =
+                employees.some(function(emp) {
+
+                    return emp.id === employee.id;
+
+                });
+
 
             if (exists) {
-                showMessage("Employee ID already exists!", "error");
+
+                showMessage(
+                    "Employee ID already exists!",
+                    "error"
+                );
+
                 return;
+
             }
 
+
             employees.push(employee);
+
 
             showMessage(
                 "Employee created successfully!",
                 "success"
             );
 
-        } else {
+        }
+
+
+        // UPDATE
+
+        else {
 
             employees[editIndex] = employee;
 
             editIndex = -1;
 
-            document.getElementById("formTitle").textContent =
-                "Create Employee";
+
+            document
+                .getElementById("formTitle")
+                .textContent = "Create Employee";
+
 
             showMessage(
                 "Employee updated successfully!",
                 "success"
             );
+
         }
 
 
@@ -475,209 +521,340 @@
             JSON.stringify(employees)
         );
 
+
         displayEmployees();
 
+        updateDashboard();
+
         this.reset();
+
     });
 
 
-    // DISPLAY ALL EMPLOYEES
-    function displayEmployees() {
+// DISPLAY EMPLOYEES
 
-        const table =
-            document.getElementById("employeeTable");
+function displayEmployees() {
 
-        table.innerHTML = "";
-
-        document.getElementById("employeeCount")
-            .textContent = employees.length;
+    const table =
+        document.getElementById("employeeTable");
 
 
-        if (employees.length === 0) {
-
-            table.innerHTML =
-                '<tr><td colspan="7" style="text-align:center;">No employees found</td></tr>';
-
-            return;
-        }
+    table.innerHTML = "";
 
 
-        employees.forEach(function(emp, index) {
+    document
+        .getElementById("employeeCount")
+        .textContent = employees.length;
 
-            const row = document.createElement("tr");
 
-            row.innerHTML = `
-                <td>${emp.id}</td>
-                <td>${emp.name}</td>
-                <td>${emp.email}</td>
-                <td>${emp.department}</td>
-                <td>${emp.designation}</td>
-                <td>₹${emp.salary}</td>
-                <td>
-                    <button class="btn btn-edit"
-                            onclick="editEmployee(${index})">
-                        Edit
-                    </button>
+    if (employees.length === 0) {
 
-                    <button class="btn btn-danger"
-                            onclick="deleteEmployee(${index})">
-                        Delete
-                    </button>
-                </td>
-            `;
+        table.innerHTML =
+            '<tr><td colspan="7" style="text-align:center;">No employees found</td></tr>';
 
-            table.appendChild(row);
-        });
+        return;
+
     }
 
 
-    // SEARCH EMPLOYEES
-    function searchEmployees() {
+    employees.forEach(function(emp, index) {
 
-        const searchText =
-            document.getElementById("searchInput")
-            .value
-            .toLowerCase()
-            .trim();
-
-        const table =
-            document.getElementById("searchResults");
-
-        table.innerHTML = "";
+        const row =
+            document.createElement("tr");
 
 
-        const results = employees.filter(function(emp) {
+        row.innerHTML = `
+
+            <td>${emp.id}</td>
+
+            <td>${emp.name}</td>
+
+            <td>${emp.email}</td>
+
+            <td>${emp.department}</td>
+
+            <td>${emp.designation}</td>
+
+            <td>₹${emp.salary}</td>
+
+            <td>
+
+                <button
+                    class="btn btn-edit"
+                    onclick="editEmployee(${index})">
+
+                    Edit
+
+                </button>
+
+
+                <button
+                    class="btn btn-danger"
+                    onclick="deleteEmployee(${index})">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+// SEARCH
+
+function searchEmployees() {
+
+    const searchText =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const table =
+        document.getElementById("searchResults");
+
+
+    table.innerHTML = "";
+
+
+    const results =
+        employees.filter(function(emp) {
 
             return (
-                emp.id.toLowerCase().includes(searchText) ||
-                emp.name.toLowerCase().includes(searchText) ||
-                emp.email.toLowerCase().includes(searchText) ||
-                emp.department.toLowerCase().includes(searchText) ||
-                emp.designation.toLowerCase().includes(searchText)
+
+                emp.id
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                emp.name
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                emp.email
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                emp.department
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                emp.designation
+                    .toLowerCase()
+                    .includes(searchText)
+
             );
 
         });
 
 
-        if (results.length === 0) {
+    if (results.length === 0) {
 
-            table.innerHTML =
-                '<tr><td colspan="6" style="text-align:center;">No employees found</td></tr>';
+        table.innerHTML =
+            '<tr><td colspan="6" style="text-align:center;">No employees found</td></tr>';
 
-            return;
-        }
+        return;
 
-
-        results.forEach(function(emp) {
-
-            const row = document.createElement("tr");
-
-            row.innerHTML = `
-                <td>${emp.id}</td>
-                <td>${emp.name}</td>
-                <td>${emp.email}</td>
-                <td>${emp.department}</td>
-                <td>${emp.designation}</td>
-                <td>₹${emp.salary}</td>
-            `;
-
-            table.appendChild(row);
-        });
     }
 
 
-    // EDIT EMPLOYEE
-    function editEmployee(index) {
+    results.forEach(function(emp) {
 
-        const emp = employees[index];
+        const row =
+            document.createElement("tr");
 
-        editIndex = index;
 
-        document.getElementById("employeeId").value =
-            emp.id;
+        row.innerHTML = `
 
-        document.getElementById("employeeName").value =
-            emp.name;
+            <td>${emp.id}</td>
 
-        document.getElementById("employeeEmail").value =
-            emp.email;
+            <td>${emp.name}</td>
 
-        document.getElementById("employeePhone").value =
-            emp.phone;
+            <td>${emp.email}</td>
 
-        document.getElementById("employeeDepartment").value =
-            emp.department;
+            <td>${emp.department}</td>
 
-        document.getElementById("employeeDesignation").value =
-            emp.designation;
+            <td>${emp.designation}</td>
 
-        document.getElementById("employeeSalary").value =
-            emp.salary;
+            <td>₹${emp.salary}</td>
 
-        document.getElementById("formTitle").textContent =
-            "Edit Employee";
+        `;
 
-        showPage("createPage");
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+// EDIT
+
+function editEmployee(index) {
+
+    const emp =
+        employees[index];
+
+
+    editIndex = index;
+
+
+    document
+        .getElementById("employeeId")
+        .value = emp.id;
+
+
+    document
+        .getElementById("employeeName")
+        .value = emp.name;
+
+
+    document
+        .getElementById("employeeEmail")
+        .value = emp.email;
+
+
+    document
+        .getElementById("employeePhone")
+        .value = emp.phone;
+
+
+    document
+        .getElementById("employeeDepartment")
+        .value = emp.department;
+
+
+    document
+        .getElementById("employeeDesignation")
+        .value = emp.designation;
+
+
+    document
+        .getElementById("employeeSalary")
+        .value = emp.salary;
+
+
+    document
+        .getElementById("formTitle")
+        .textContent = "Edit Employee";
+
+
+    showPage("createPage");
+
+}
+
+
+// DELETE
+
+function deleteEmployee(index) {
+
+    if (
+        confirm(
+            "Are you sure you want to delete this employee?"
+        )
+    ) {
+
+        employees.splice(index, 1);
+
+
+        localStorage.setItem(
+            "employees",
+            JSON.stringify(employees)
+        );
+
+
+        displayEmployees();
+
+        updateDashboard();
+
     }
 
-
-    // DELETE EMPLOYEE
-    function deleteEmployee(index) {
-
-        if (
-            confirm(
-                "Are you sure you want to delete this employee?"
-            )
-        ) {
-
-            employees.splice(index, 1);
-
-            localStorage.setItem(
-                "employees",
-                JSON.stringify(employees)
-            );
-
-            displayEmployees();
-        }
-    }
+}
 
 
-    // RESET FORM
-    function resetForm() {
+// RESET
 
-        document.getElementById("employeeForm").reset();
+function resetForm() {
 
-        editIndex = -1;
-
-        document.getElementById("formTitle").textContent =
-            "Create Employee";
-    }
+    document
+        .getElementById("employeeForm")
+        .reset();
 
 
-    // MESSAGE
-    function showMessage(text, type) {
-
-        const message =
-            document.getElementById("message");
-
-        message.textContent = text;
-
-        message.className =
-            "message " + type;
-
-        message.style.display = "block";
+    editIndex = -1;
 
 
-        setTimeout(function() {
-            message.style.display = "none";
-        }, 3000);
-    }
+    document
+        .getElementById("formTitle")
+        .textContent = "Create Employee";
+
+}
 
 
-    // INITIAL DISPLAY
-    displayEmployees();
+// MESSAGE
+
+function showMessage(text, type) {
+
+    const message =
+        document.getElementById("message");
+
+
+    message.textContent = text;
+
+
+    message.className =
+        "message " + type;
+
+
+    message.style.display = "block";
+
+
+    setTimeout(function() {
+
+        message.style.display = "none";
+
+    }, 3000);
+
+}
+
+
+// DASHBOARD COUNT
+
+function updateDashboard() {
+
+    document
+        .getElementById("dashboardCount")
+        .textContent =
+        employees.length + " Employees";
+
+}
+
+
+// INITIAL LOAD
+
+displayEmployees();
+
+updateDashboard();
 
 </script>
 
 </body>
+
 </html>
