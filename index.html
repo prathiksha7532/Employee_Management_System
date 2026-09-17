@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,353 +12,537 @@
 
 <body>
 
-<header>
-    <h1>Employee Management System</h1>
-    <span>Employee Dashboard</span>
-</header>
+<div class="app">
 
+    <!-- SIDEBAR -->
 
-<div class="container">
+    <aside class="sidebar">
 
-    <!-- HOME / DASHBOARD -->
+        <div class="logo">
+            <div class="logo-icon">👥</div>
 
-    <div id="homePage" class="page active home-page">
-
-        <h2>Dashboard</h2>
-
-        <p>Manage your employee information easily</p>
-
-
-        <div class="dashboard">
-
-            <div class="dashboard-card">
-                <div class="icon">👥</div>
-                <h3>Total Employees</h3>
-                <p id="dashboardCount">0 Employees</p>
+            <div>
+                <h2>Employee</h2>
+                <span>Management</span>
             </div>
-
-            <div class="dashboard-card">
-                <div class="icon">➕</div>
-                <h3>Create Employee</h3>
-                <p>Add a new employee record</p>
-            </div>
-
-            <div class="dashboard-card">
-                <div class="icon">🔍</div>
-                <h3>Search Employee</h3>
-                <p>Find employee information</p>
-            </div>
-
         </div>
 
 
-        <div class="menu">
-
-            <button onclick="showPage('createPage')">
-                ➕ CREATE
-            </button>
-
-            <button onclick="showPage('searchPage')">
-                🔍 SEARCH
-            </button>
-
-            <button onclick="showPage('showPage')">
-                📋 SHOW
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- CREATE PAGE -->
-
-    <div id="createPage" class="page">
-
-        <div class="content-card">
+        <nav>
 
             <button
-                class="btn btn-secondary back-btn"
-                onclick="showPage('homePage')">
-                ← Back to Dashboard
+                class="nav-btn active"
+                onclick="showPage('homePage', this)">
+                🏠
+                <span>Dashboard</span>
             </button>
 
 
-            <h2 id="formTitle">Create Employee</h2>
+            <button
+                class="nav-btn"
+                onclick="showPage('createPage', this)">
+                ➕
+                <span>Create Employee</span>
+            </button>
 
-            <div id="message" class="message"></div>
+
+            <button
+                class="nav-btn"
+                onclick="showPage('searchPage', this)">
+                🔍
+                <span>Search Employee</span>
+            </button>
 
 
-            <form id="employeeForm">
+            <button
+                class="nav-btn"
+                onclick="showPage('showPage', this)">
+                📋
+                <span>All Employees</span>
+            </button>
 
-                <div class="form-grid">
+        </nav>
 
-                    <div class="form-group">
 
-                        <label>Employee ID</label>
+        <div class="sidebar-bottom">
+            <p>Employee Management System</p>
+            <small>© 2026</small>
+        </div>
 
-                        <input
-                            type="text"
-                            id="employeeId"
-                            placeholder="Enter employee ID"
-                            required>
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Welcome to your employee management system</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-icon">👤</div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+
+            <!-- DASHBOARD -->
+
+            <section id="homePage" class="page active">
+
+                <div class="welcome">
+
+                    <div>
+                        <h2>Welcome Back! 👋</h2>
+
+                        <p>
+                            Manage employee records quickly and easily.
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showPage('createPage')">
+                        + Add Employee
+                    </button>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="stats">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            👥
+                        </div>
+
+                        <div>
+                            <p>Total Employees</p>
+                            <h2 id="dashboardCount">0</h2>
+                        </div>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="stat-card">
 
-                        <label>Employee Name</label>
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
 
-                        <input
-                            type="text"
-                            id="employeeName"
-                            placeholder="Enter employee name"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>Email</label>
-
-                        <input
-                            type="email"
-                            id="employeeEmail"
-                            placeholder="Enter email"
-                            required>
+                        <div>
+                            <p>System Status</p>
+                            <h2>Active</h2>
+                        </div>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="stat-card">
 
-                        <label>Phone</label>
+                        <div class="stat-icon orange">
+                            📊
+                        </div>
 
-                        <input
-                            type="tel"
-                            id="employeePhone"
-                            placeholder="Enter phone number"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>Department</label>
-
-                        <select id="employeeDepartment" required>
-
-                            <option value="">
-                                Select Department
-                            </option>
-
-                            <option value="HR">
-                                HR
-                            </option>
-
-                            <option value="IT">
-                                IT
-                            </option>
-
-                            <option value="Finance">
-                                Finance
-                            </option>
-
-                            <option value="Marketing">
-                                Marketing
-                            </option>
-
-                            <option value="Sales">
-                                Sales
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>Designation</label>
-
-                        <input
-                            type="text"
-                            id="employeeDesignation"
-                            placeholder="Enter designation"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>Salary</label>
-
-                        <input
-                            type="number"
-                            id="employeeSalary"
-                            placeholder="Enter salary"
-                            required>
+                        <div>
+                            <p>Departments</p>
+                            <h2 id="departmentCount">0</h2>
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <br>
+                <!-- QUICK ACTIONS -->
 
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-                    💾 Save Employee
-                </button>
+                <div class="section-title">
+
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Choose an action to continue</p>
+                    </div>
+
+                </div>
 
 
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    onclick="resetForm()">
-                    Clear
-                </button>
+                <div class="quick-actions">
 
-            </form>
+                    <button
+                        class="action-card"
+                        onclick="showPage('createPage')">
+
+                        <div class="action-icon">➕</div>
+
+                        <h3>Create Employee</h3>
+
+                        <p>
+                            Add a new employee record
+                        </p>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        onclick="showPage('searchPage')">
+
+                        <div class="action-icon">🔍</div>
+
+                        <h3>Search Employee</h3>
+
+                        <p>
+                            Find employee information
+                        </p>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        onclick="showPage('showPage')">
+
+                        <div class="action-icon">📋</div>
+
+                        <h3>View Employees</h3>
+
+                        <p>
+                            View all employee records
+                        </p>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- CREATE PAGE -->
+
+            <section id="createPage" class="page">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2 id="formTitle">
+                                Create Employee
+                            </h2>
+
+                            <p>
+                                Enter employee information below
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div id="message" class="message"></div>
+
+
+                    <form id="employeeForm">
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label>Employee ID</label>
+
+                                <input
+                                    type="text"
+                                    id="employeeId"
+                                    placeholder="Example: EMP101"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Employee Name</label>
+
+                                <input
+                                    type="text"
+                                    id="employeeName"
+                                    placeholder="Enter employee name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Email</label>
+
+                                <input
+                                    type="email"
+                                    id="employeeEmail"
+                                    placeholder="employee@gmail.com"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Phone</label>
+
+                                <input
+                                    type="tel"
+                                    id="employeePhone"
+                                    placeholder="Enter phone number"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Department</label>
+
+                                <select
+                                    id="employeeDepartment"
+                                    required>
+
+                                    <option value="">
+                                        Select Department
+                                    </option>
+
+                                    <option value="HR">
+                                        HR
+                                    </option>
+
+                                    <option value="IT">
+                                        IT
+                                    </option>
+
+                                    <option value="Finance">
+                                        Finance
+                                    </option>
+
+                                    <option value="Marketing">
+                                        Marketing
+                                    </option>
+
+                                    <option value="Sales">
+                                        Sales
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Designation</label>
+
+                                <input
+                                    type="text"
+                                    id="employeeDesignation"
+                                    placeholder="Example: Software Developer"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Salary</label>
+
+                                <input
+                                    type="number"
+                                    id="employeeSalary"
+                                    placeholder="Enter salary"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="submit"
+                                class="primary-btn">
+                                💾 Save Employee
+                            </button>
+
+                            <button
+                                type="button"
+                                class="secondary-btn"
+                                onclick="resetForm()">
+                                Clear
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- SEARCH PAGE -->
+
+            <section id="searchPage" class="page">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>🔍 Search Employee</h2>
+
+                            <p>
+                                Search by ID, name, email,
+                                department or designation
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="search-box">
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Type to search..."
+                            onkeyup="searchEmployees()">
+
+
+                        <button
+                            class="primary-btn"
+                            onclick="searchEmployees()">
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Designation</th>
+                                    <th>Salary</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="searchResults"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SHOW PAGE -->
+
+            <section id="showPage" class="page">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>📋 All Employees</h2>
+
+                            <p>
+                                Manage all employee records
+                            </p>
+
+                        </div>
+
+                        <div class="employee-total">
+
+                            Total:
+                            <strong id="employeeCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Designation</th>
+                                    <th>Salary</th>
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="employeeTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 
-    </div>
-
-
-    <!-- SEARCH PAGE -->
-
-    <div id="searchPage" class="page">
-
-        <div class="content-card">
-
-            <button
-                class="btn btn-secondary back-btn"
-                onclick="showPage('homePage')">
-                ← Back to Dashboard
-            </button>
-
-
-            <h2>🔍 Search Employee</h2>
-
-
-            <div class="search-box">
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search by ID, name, email, department or designation"
-                    onkeyup="searchEmployees()">
-
-
-                <button
-                    class="btn btn-primary"
-                    onclick="searchEmployees()">
-                    Search
-                </button>
-
-            </div>
-
-
-            <div class="table-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Designation</th>
-                            <th>Salary</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="searchResults"></tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SHOW PAGE -->
-
-    <div id="showPage" class="page">
-
-        <div class="content-card">
-
-            <button
-                class="btn btn-secondary back-btn"
-                onclick="showPage('homePage')">
-                ← Back to Dashboard
-            </button>
-
-
-            <h2>📋 All Employees</h2>
-
-
-            <div class="count-box">
-
-                👥 Total Employees:
-                <span id="employeeCount">0</span>
-
-            </div>
-
-
-            <div class="table-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Designation</th>
-                            <th>Salary</th>
-                            <th>Actions</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="employeeTable"></tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
+    </main>
 
 </div>
-
-
-<footer>
-
-    Employee Management System © 2026
-
-</footer>
 
 
 <script>
@@ -368,9 +553,9 @@ let employees =
 let editIndex = -1;
 
 
-// SHOW PAGE
+// PAGE NAVIGATION
 
-function showPage(pageId) {
+function showPage(pageId, button = null) {
 
     document
         .querySelectorAll(".page")
@@ -384,6 +569,57 @@ function showPage(pageId) {
     document
         .getElementById(pageId)
         .classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    } else {
+
+        document
+            .querySelectorAll(".nav-btn")
+            .forEach(function(btn) {
+
+                if (
+                    btn.getAttribute("onclick")
+                    .includes(pageId)
+                ) {
+
+                    btn.classList.add("active");
+
+                }
+
+            });
+
+    }
+
+
+    const titles = {
+
+        homePage: "Dashboard",
+
+        createPage: "Create Employee",
+
+        searchPage: "Search Employee",
+
+        showPage: "All Employees"
+
+    };
+
+
+    document
+        .getElementById("pageTitle")
+        .textContent = titles[pageId];
 
 
     if (pageId === "showPage") {
@@ -459,8 +695,6 @@ document
         };
 
 
-        // CREATE
-
         if (editIndex === -1) {
 
             const exists =
@@ -491,12 +725,7 @@ document
                 "success"
             );
 
-        }
-
-
-        // UPDATE
-
-        else {
+        } else {
 
             employees[editIndex] = employee;
 
@@ -505,7 +734,8 @@ document
 
             document
                 .getElementById("formTitle")
-                .textContent = "Create Employee";
+                .textContent =
+                "Create Employee";
 
 
             showMessage(
@@ -516,11 +746,7 @@ document
         }
 
 
-        localStorage.setItem(
-            "employees",
-            JSON.stringify(employees)
-        );
-
+        saveData();
 
         displayEmployees();
 
@@ -550,7 +776,7 @@ function displayEmployees() {
     if (employees.length === 0) {
 
         table.innerHTML =
-            '<tr><td colspan="7" style="text-align:center;">No employees found</td></tr>';
+            '<tr><td colspan="7" class="empty">No employees found</td></tr>';
 
         return;
 
@@ -565,13 +791,19 @@ function displayEmployees() {
 
         row.innerHTML = `
 
-            <td>${emp.id}</td>
+            <td>
+                <strong>${emp.id}</strong>
+            </td>
 
             <td>${emp.name}</td>
 
             <td>${emp.email}</td>
 
-            <td>${emp.department}</td>
+            <td>
+                <span class="badge">
+                    ${emp.department}
+                </span>
+            </td>
 
             <td>${emp.designation}</td>
 
@@ -580,20 +812,15 @@ function displayEmployees() {
             <td>
 
                 <button
-                    class="btn btn-edit"
+                    class="small-btn edit"
                     onclick="editEmployee(${index})">
-
                     Edit
-
                 </button>
 
-
                 <button
-                    class="btn btn-danger"
+                    class="small-btn delete"
                     onclick="deleteEmployee(${index})">
-
                     Delete
-
                 </button>
 
             </td>
@@ -668,7 +895,7 @@ function searchEmployees() {
     if (results.length === 0) {
 
         table.innerHTML =
-            '<tr><td colspan="6" style="text-align:center;">No employees found</td></tr>';
+            '<tr><td colspan="6" class="empty">No employees found</td></tr>';
 
         return;
 
@@ -683,13 +910,19 @@ function searchEmployees() {
 
         row.innerHTML = `
 
-            <td>${emp.id}</td>
+            <td>
+                <strong>${emp.id}</strong>
+            </td>
 
             <td>${emp.name}</td>
 
             <td>${emp.email}</td>
 
-            <td>${emp.department}</td>
+            <td>
+                <span class="badge">
+                    ${emp.department}
+                </span>
+            </td>
 
             <td>${emp.designation}</td>
 
@@ -753,7 +986,8 @@ function editEmployee(index) {
 
     document
         .getElementById("formTitle")
-        .textContent = "Edit Employee";
+        .textContent =
+        "Edit Employee";
 
 
     showPage("createPage");
@@ -773,12 +1007,7 @@ function deleteEmployee(index) {
 
         employees.splice(index, 1);
 
-
-        localStorage.setItem(
-            "employees",
-            JSON.stringify(employees)
-        );
-
+        saveData();
 
         displayEmployees();
 
@@ -789,7 +1018,7 @@ function deleteEmployee(index) {
 }
 
 
-// RESET
+// RESET FORM
 
 function resetForm() {
 
@@ -803,7 +1032,20 @@ function resetForm() {
 
     document
         .getElementById("formTitle")
-        .textContent = "Create Employee";
+        .textContent =
+        "Create Employee";
+
+}
+
+
+// SAVE DATA
+
+function saveData() {
+
+    localStorage.setItem(
+        "employees",
+        JSON.stringify(employees)
+    );
 
 }
 
@@ -835,14 +1077,30 @@ function showMessage(text, type) {
 }
 
 
-// DASHBOARD COUNT
+// DASHBOARD
 
 function updateDashboard() {
 
     document
         .getElementById("dashboardCount")
         .textContent =
-        employees.length + " Employees";
+        employees.length;
+
+
+    const departments =
+        new Set(
+            employees.map(function(emp) {
+
+                return emp.department;
+
+            })
+        );
+
+
+    document
+        .getElementById("departmentCount")
+        .textContent =
+        departments.size;
 
 }
 
